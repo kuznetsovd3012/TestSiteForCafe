@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>CoffeeCraft — Опитування</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    form { background:#fff; border:1px solid #eadfce; border-radius:12px; padding:16px; margin:16px 0 }
+    fieldset { border:1px solid #eadfce; border-radius:10px; padding:12px; margin:12px 0 }
+    legend { padding:0 6px; color:#5A3E36; font-weight:600 }
+    .err { color:#b00020; font-size:14px; margin-top:6px }
+    .row { display:grid; gap:10px; grid-template-columns: 1fr 1fr }
+    .row > label { display:flex; flex-direction:column; gap:4px }
+    textarea { width:100%; min-height:110px }
+    input[type="text"], input[type="email"], input[type="tel"], textarea { padding:8px; border:1px solid #eadfce; border-radius:8px }
+    .actions { display:flex; gap:10px; margin-top:10px }
+  </style>
+</head>
+<body>
+<header><h1>Опитування відвідувачів</h1></header>
+<nav>
+  <a href="index.html">Головна</a> | <a href="menu.html">Меню</a> | <a href="about.html">Про нас</a> |
+  <a href="gallery.html">Галерея</a> | <a href="news.html">Новини</a> | <a href="contacts.html">Контакти</a>
+</nav>
+
+<main>
+  <!-- ФОРМА 1: опитування -->
+  <form id="surveyForm" novalidate>
+    <fieldset class="row">
+      <legend>Контакти</legend>
+      <label>Ім’я* <input name="name" type="text" required></label>
+      <label>Email* <input name="email" type="email" required></label>
+      <label>Телефон <input name="phone" type="tel" pattern="^[0-9+\-\s()]{7,}$" placeholder="+380..."></label>
+      <label>Місто <input name="city" type="text"></label>
+      <label>Улюблений напій <input name="fav" type="text" placeholder="Лате / Фільтр / ..."></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Як ви дізналися про нас?* (Radio ≥4)</legend>
+      <label><input type="radio" name="source" value="Google" required> Google</label>
+      <label><input type="radio" name="source" value="Соцмережі"> Соцмережі</label>
+      <label><input type="radio" name="source" value="Друзі"> Друзі</label>
+      <label><input type="radio" name="source" value="Прохід повз"> Прохід повз</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Що цікавить?* (Checkbox ≥5 варіантів)</legend>
+      <label><input type="checkbox" name="interest" value="Еспресо"> Еспресо</label>
+      <label><input type="checkbox" name="interest" value="Фільтр"> Фільтр</label>
+      <label><input type="checkbox" name="interest" value="Альтернативи"> Альтернативи</label>
+      <label><input type="checkbox" name="interest" value="Десерти"> Десерти</label>
+      <label><input type="checkbox" name="interest" value="Боби в пакеті"> Боби в пакеті</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Відгук</legend>
+      <div class="row">
+        <label>Що сподобалось? <textarea name="like"></textarea></label>
+        <label>Що покращити? <textarea name="improve"></textarea></label>
+      </div>
+      <div class="row">
+        <label>Улюблений сорт <textarea name="bean"></textarea></label>
+        <label>Улюблений десерт <textarea name="dessert"></textarea></label>
+      </div>
+      <label>Інше <textarea name="other"></textarea></label>
+      <!-- разом ≥5 полів вводу в Text Area -->
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit">Підтвердити</button>
+      <button type="reset">Очистити</button>
+    </div>
+    <div id="surveyErr" class="err" aria-live="polite"></div>
+  </form>
+
+  <!-- ФОРМА 2: повідомлення користувача -->
+  <form id="messageForm">
+    <fieldset>
+      <legend>Повідомлення користувача</legend>
+      <textarea id="msgOut" placeholder="Результат з форми 1 з’явиться тут" required></textarea>
+    </fieldset>
+    <div class="actions">
+      <button type="button" id="sendBtn">Відправити лист</button>
+    </div>
+  </form>
+</main>
+
+<script>
+(function(){
+  const f = document.getElementById('surveyForm');
+  const err = document.getElementById('surveyErr');
+  const out = document.getElementById('msgOut');
+
+  function getCheckedValues(name){
+    return [...f.querySelectorAll('input[name="'+name+'"]:checked')].map(i=>i.value);
+  }
+
+  function validate(){
+    err.textContent = '';
+    // HTML5 перевірка обов’язкових полів
+    if(!f.reportValidity()){ return false; }
+
+    // Принаймні 1 checkbox
+    if(getCheckedValues('interest').length === 0){
+      err.textContent = 'Оберіть хоча б один інтерес.';
+      return false;
+    }
+    return true;
+  }
+
+  f.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    if(!validate()) return;
+
+    const fd = new FormData(f);
+    const radioSource = fd.get('source') || '';
+    const interests = getCheckedValues('interest').join(', ');
+
+    const result =
+`Опитування CoffeeCraft
+----------------------
+Ім’я: ${fd.get('name') || ''}
+Email: ${fd.get('email') || ''}
+Телефон: ${fd.get('phone') || ''}
+Місто: ${fd.get('city') || ''}
+Улюблений напій: ${fd.get('fav') || ''}
+
+Джерело: ${radioSource}
+Цікавить: ${interests}
+
+Що сподобалось: ${fd.get('like') || ''}
+Що покращити: ${fd.get('improve') || ''}
+Улюблений сорт: ${fd.get('bean') || ''}
+Улюблений десерт: ${fd.get('dessert') || ''}
+Інше: ${fd.get('other') || ''}`;
+
+    out.value = result;
+    out.focus();
+  });
+
+  // Відправка листа через mailto (без ОС-клієнта не обійтись у чистому фронтенді)
+  document.getElementById('sendBtn').addEventListener('click', ()=>{
+    if(!out.value.trim()){ alert('Немає тексту для відправлення.'); return; }
+    const to = 'hello@coffeecraft.ua'; // змініть за потреби
+    const subject = encodeURIComponent('Відгук з опитування');
+    const body = encodeURIComponent(out.value);
+    // відкриє системний поштовий клієнт або браузерний обробник пошти
+    location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  });
+})();
+</script>
+</body>
+</html>

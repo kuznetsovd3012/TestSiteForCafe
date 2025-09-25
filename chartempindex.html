@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Демо JS</title>
+  <script src="chartemp.js"></script>
+</head>
+<body>
+  <h2>Перевірка JS-завдань</h2>
+
+  <!-- 1) Тип і версія браузера -->
+  <p>Ваш браузер: <span id="browserInfo"></span></p>
+
+  <!-- 2) Калькулятор -->
+  <h3>Калькулятор</h3>
+    <input type="number" id="calcA" placeholder="Число 1">
+    <input type="number" id="calcB" placeholder="Число 2">
+    <div>
+     <button onclick="doCalc('+')">+</button>
+     <button onclick="doCalc('-')">-</button>
+     <button onclick="doCalc('*')">*</button>
+     <button onclick="doCalc('/')">/</button>
+    </div>
+  <p id="calcResult">Результат: </p>
+
+  <!-- 3) Наведи мишку -->
+  <h3>Зображення з ефектом</h3>
+  <img src="img/latte.jpg" width="200"
+       onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
+
+  <!-- 4) Радіо-галерея -->
+  <h3>Вибір зображення</h3>
+<form id="radioGallery">
+  <label><input type="radio" name="pic" value="latte"> Лате</label>
+  <label><input type="radio" name="pic" value="roaster"> Рістер</label>
+  <label><input type="radio" name="pic" value="dessert"> Десерт</label>
+  <label><input type="radio" name="pic" value="hero"> Інтер'єр</label>
+  <label><input type="radio" name="pic" value="map"> Карта</label>
+</form>
+
+<div style="margin-top:10px;">
+  <img id="radioResult" src="" alt="Вибране зображення" width="300" height="200">
+</div>
+
+<div style="margin-top:10px;">
+  <button type="button" onclick="resizeImg(0.5)">Зменшити</button>
+  <button type="button" onclick="resizeImg(2.0)">Збільшити</button>
+  <button type="button" onclick="goBack()">Назад</button>
+</div>
+
+  <!-- 5) Статичне меню -->
+  <nav>
+    <a href="index.html">Головна</a> |
+    <a href="about.html">Про нас</a>
+  </nav>
+
+  <!-- 6) Select-меню -->
+  <select onchange="jumpTo(this)">
+    <option value="">— перейти —</option>
+    <option value="menu.html">Меню</option>
+    <option value="gallery.html">Галерея</option>
+  </select>
+
+  <!-- 7) Мова -->
+  <select id="langSelect">
+    <option value="ua">UA</option>
+    <option value="ru">RUS</option>
+  </select>
+
+  <!-- 8) Інформація дня -->
+  <p id="infoOfDay"></p>
+</body>
+</html>

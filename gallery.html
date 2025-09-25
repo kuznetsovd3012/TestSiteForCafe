@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8"><title>CoffeeCraft — Галерея</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="chartemp.js"></script>
+</head>
+<body bgcolor="#FFF8E7" text="#2B2B2B">
+<header><h1><font size="6" color="#5A3E36">Галерея</font></h1></header>
+<nav>
+  <a href="index.html">Головна</a> | <a href="menu.html">Меню</a> | <a href="about.html">Про нас</a> |
+  <a href="gallery.html">Галерея</a> | <a href="news.html">Новини</a> | <a href="contacts.html">Контакти</a>
+</nav><hr>
+<section>
+  <form id="radioGallery" style="margin:10px 0">
+  <label><input type="radio" name="pic" value="latte"> Лате</label>
+  <label><input type="radio" name="pic" value="roaster"> Рістер</label>
+  <label><input type="radio" name="pic" value="dessert"> Десерт</label>
+  <label><input type="radio" name="pic" value="hero"> Інтер'єр</label>
+  <label><input type="radio" name="pic" value="map"> Карта</label>
+</form>
+
+<div style="margin-top:10px;">
+  <img id="radioResult" src="" alt="Вибране зображення" width="300">
+</div>
+
+<div style="margin-top:10px;">
+  <button type="button" onclick="resizeImg(0.5)">Зменшити</button>
+  <button type="button" onclick="resizeImg(2.0)">Збільшити</button>
+</div>
+  <p><small>Фото ілюстративні.</small></p>
+</section>
+<footer><hr><p>&copy; 2025 CoffeeCraft</p></footer>
+</body></html>

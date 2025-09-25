@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Практичне застосування елементів CSS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="chartemp.js"></script>
+</head>
+<body>
+<header>
+  <h1>CoffeeCraft</h1>
+  <p>Міська кав'ярня з обсмаженням власних зерен</p>
+  <p id="infoOfDay" style="margin-top:8px"></p>
+</header>
+
+<nav>
+  <a href="index.html">Головна</a>
+  <a href="menu.html">Меню</a>
+  <a href="about.html">Про нас</a>
+  <a href="gallery.html">Галерея</a>
+  <a href="news.html">Новини</a>
+  <a href="contacts.html">Контакти</a>
+  <a href="chartempindex.html">Test01</a>
+  <a href="survey.html">Test02</a>
+</nav>
+
+<main>
+  <section>
+    <h2>Ласкаво просимо</h2>
+    <p>Спробуйте нашу <b>фірмову</b> арабіку та авторські десерти. Знижка <mark>10%</mark> з 8:00 до 10:00.</p>
+    <div class="hero">
+      <img src="img/hero.jpg" alt="Інтер'єр кав'ярні">
+    </div>
+    <div style="text-align:center">
+      <a class="btn" href="menu.html">Перейти в меню</a>
+      <a class="btn secondary" href="gallery.html">Подивитися галерею</a>
+      <a class="btn github" href="contacts.html">Зв’язатися</a>
+    </div>
+  </section>
+
+  <section>
+    <h3>Чому обирають нас</h3>
+    <ul class="list">
+      <li><b>Свіже обсмаження</b> зерна щотижня</li>
+      <li>Напої з <i>рослинним</i> молоком</li>
+      <li>Домашні десерти</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Години роботи</h3>
+    <table>
+      <thead><tr><th>День</th><th>Часи</th></tr></thead>
+      <tbody>
+        <tr><td>Пн–Пт</td><td>08:00–20:00</td></tr>
+        <tr><td>Сб</td><td>09:00–21:00</td></tr>
+        <tr><td>Нд</td><td>10:00–19:00</td></tr>
+      </tbody>
+    </table>
+    <p>Дивіться <a href="#map">карту нижче</a>.</p>
+  </section>
+
+  <section id="map">
+    <h3>Ми тут</h3>
+    <p>вул. Кавова, 7, Київ</p>
+    <img class="map" src="img/map.jpg" alt="Карта розташування">
+  </section>
+  
+</main>
+
+<footer>
+  <p>&copy; 2025 CoffeeCraft • <a href="mailto:hello@coffeecraft.ua">hello@coffeecraft.ua</a></p>
+  <p>Ваш браузер: <span id="browserInfo"></span></p>
+</footer>
+</body>
+</html>

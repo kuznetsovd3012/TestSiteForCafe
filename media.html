@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>CoffeeCraft — Мультимедіа (лабораторна «Інформаційні потоки»)</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="chartemp.js"></script>
+  <style>
+    .note { font-size:14px; color:#4c3a33; background:#fff; border:1px solid #eadfce; border-radius:10px; padding:10px; margin:8px 0 }
+    figure { background:#fff; border:1px solid #eadfce; border-radius:12px; padding:14px; margin:16px 0 }
+    figcaption { margin-top:8px; font-size:14px }
+    code { background:#fff3cd; padding:2px 4px; border-radius:6px }
+    .proscons { display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:8px }
+    .proscons > div { border:1px dashed #eadfce; border-radius:8px; padding:8px; background:#FCFAF4 }
+    .missing { font-size: 13px; color: #9c2c2c }
+    nav a { margin-right: 10px }
+  </style>
+</head>
+<body>
+<header><h1>Мультимедіа: AVI, MP3, Flash</h1></header>
+
+<nav>
+  <a href="index.html">Головна</a>
+  <a href="menu.html">Меню</a>
+  <a href="about.html">Про нас</a>
+  <a href="gallery.html">Галерея</a>
+  <a href="news.html">Новини</a>
+  <a href="contacts.html">Контакти</a>
+</nav>
+
+<main>
+  <section class="note">
+    Файли очікуються у <code>media/</code>. Якщо файлів немає, показуються фолбеки.
+  </section>
+
+  <!-- 1) AVI -->
+  <section>
+    <h2>1) «AVI»</h2>
+    <p>Тестове відео mp4 бо avi більше не підтримується браузерами(<code>media/Rick Roll (Different link + no ads).mp4</code>):</p>
+      <figure>
+       <video controls width="600">
+         <source src="media/Rick Roll (Different link + no ads).mp4" type="video/mp4">
+       </video>
+      </figure>
+    <div class="proscons">
+      <div><b>Переваги</b><ul><li>Простий контейнер.</li><li>Різні кодеки всередині.</li></ul></div>
+      <div><b>Недоліки</b><ul><li>Слабка підтримка у браузерах.</li><li>Великий розмір.</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 2) MP3 -->
+  <section>
+    <h2>2) «MP3»</h2>
+    <p>Тестове аудіо (<code>media/Walk_Street.mp3</code>):</p>
+    <figure>
+      <audio controls>
+        <source src="media/Walk_Street.mp3" type="audio/mpeg">
+        <p class="missing">Браузер не підтримує <code>&lt;audio&gt;</code>. <a href="media/Walk_Street.mp3">Завантажити MP3</a>.</p>
+      </audio>
+      <figcaption>MP3 відтворюється нативно більшістю браузерів.</figcaption>
+    </figure>
+    <div class="proscons">
+      <div><b>Переваги</b><ul><li>Широка підтримка.</li><li>Малий розмір.</li></ul></div>
+      <div><b>Недоліки</b><ul><li>Стиснення з втратами.</li><li>Історичні ліцензії.</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 3) Flash -->
+  <section>
+    <h2>3) «Flash» (.swf)</h2>
+    <p>Тестовий файл (<code>media/promo.swf</code>):</p>
+    <figure>
+      <object data="media/promo.swf" type="application/x-shockwave-flash" width="720" height="200">
+        <p class="missing">Flash відключено. Фолбек нижче.</p>
+        <img src="media/Earth_Rotation.gif" alt="GIF фолбек">
+      </object>
+      <figcaption>SWF через <code>&lt;object&gt;</code> із фолбеками.</figcaption>
+    </figure>
+    <div class="proscons">
+      <div><b>Переваги</b><ul><li>Історично багата інтерактивність.</li><li>Велика екосистема 2000-х.</li></ul></div>
+      <div><b>Недоліки</b><ul><li>Офіційно непідтримується з 2021.</li><li>Питання безпеки. Замінив HTML5.</li></ul></div>
+    </div>
+  </section>
+
+  <section class="note">
+    Рекомендація: конвертуй відео у MP4/H.264 або AV1. Аудіо — у MP3/Opus.
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 CoffeeCraft</p>
+</footer>
+</body>
+</html>
